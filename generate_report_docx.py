@@ -38,15 +38,78 @@ def create_report():
         section.left_margin = Inches(1.25)
         section.right_margin = Inches(1.0)
         
-        # Add footer
+        # Add footer with horizontal divider and dynamic Page X of Y numbering
         footer = section.footer
         f_p = footer.paragraphs[0]
-        f_p.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-        f_run = f_p.add_run("ML Mini Project | Computer Engineering, IIIT Bhubaneswar")
-        f_run.font.name = "Times New Roman"
-        f_run.font.size = Pt(9)
-        f_run.font.italic = True
-        f_run.font.color.rgb = RGBColor(120, 120, 120)
+        p_xml = f'''<w:p xmlns:w="http://schemas.openxmlformats.org/wordprocessingml/2006/main">
+            <w:pPr>
+                <w:pStyle w:val="Footer"/>
+                <w:pBdr>
+                    <w:top w:val="single" w:sz="6" w:space="6" w:color="CBD5E1"/>
+                </w:pBdr>
+                <w:tabs>
+                    <w:tab w:val="center" w:pos="4500"/>
+                    <w:tab w:val="right" w:pos="9000"/>
+                </w:tabs>
+                <w:spacing w:before="120" w:after="0"/>
+            </w:pPr>
+            <w:r>
+                <w:rPr>
+                    <w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/>
+                    <w:i/>
+                    <w:color w:val="64748B"/>
+                    <w:sz w:val="18"/>
+                </w:rPr>
+                <w:t>ML Mini Project | Computer Engineering, IIIT Bhubaneswar</w:t>
+            </w:r>
+            <w:r>
+                <w:tab/>
+                <w:tab/>
+            </w:r>
+            <w:r>
+                <w:rPr>
+                    <w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/>
+                    <w:color w:val="64748B"/>
+                    <w:sz w:val="18"/>
+                </w:rPr>
+                <w:t xml:space="preserve">Page </w:t>
+            </w:r>
+            <w:fldSimple w:instr="PAGE">
+                <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/>
+                        <w:b/>
+                        <w:color w:val="0F172A"/>
+                        <w:sz w:val="18"/>
+                    </w:rPr>
+                    <w:t>1</w:t>
+                </w:r>
+            </w:fldSimple>
+            <w:r>
+                <w:rPr>
+                    <w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/>
+                    <w:color w:val="64748B"/>
+                    <w:sz w:val="18"/>
+                </w:rPr>
+                <w:t xml:space="preserve"> of </w:t>
+            </w:r>
+            <w:fldSimple w:instr="NUMPAGES">
+                <w:r>
+                    <w:rPr>
+                        <w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/>
+                        <w:b/>
+                        <w:color w:val="0F172A"/>
+                        <w:sz w:val="18"/>
+                    </w:rPr>
+                    <w:t>26</w:t>
+                </w:r>
+            </w:fldSimple>
+        </w:p>'''
+        f_p._p.getparent().replace(f_p._p, parse_xml(p_xml))
+
+    # Enable automatic field updates upon opening in Microsoft Word
+    update_xml = parse_xml(f'<w:updateFields {nsdecls("w")} w:val="true"/>')
+    doc.settings.element.append(update_xml)
 
     # Styles setup
     style_normal = doc.styles['Normal']
@@ -273,51 +336,51 @@ def create_report():
     add_h1("TABLE OF CONTENTS")
 
     toc_items = [
-        ("Certificate of Evaluation", "ii"),
-        ("Declaration of Originality", "iii"),
-        ("Acknowledgement", "iv"),
-        ("Abstract", "v"),
-        ("Chapter 1: Introduction & Project Scope", "1"),
-        ("    1.1 Motivation and Clinical Context", "1"),
-        ("    1.2 Problem Definition", "2"),
-        ("    1.3 Project Objectives", "2"),
-        ("Chapter 2: Dataset Description & Analysis", "3"),
-        ("    2.1 Dataset Overview", "3"),
-        ("    2.2 The Cambridge AQ-10 Behavioral Questions", "3"),
-        ("    2.3 Demographic & Clinical Features", "4"),
-        ("    2.4 Class Distribution & Imbalance", "5"),
-        ("Chapter 3: Data Preprocessing & Leakage Elimination", "6"),
-        ("    3.1 Data Cleaning & Anomaly Correction", "6"),
-        ("    3.2 Missing Value Handling", "6"),
-        ("    3.3 Categorical & Numerical Transformations", "7"),
-        ("    3.4 Target Data Leakage: The 'result' Column Problem", "7"),
-        ("Chapter 4: Machine Learning Models & Training Pipeline", "9"),
-        ("    4.1 Model Selection & Algorithmic Paradigms", "9"),
-        ("    4.2 5-Fold Stratified Cross-Validation", "10"),
-        ("    4.3 Hyperparameter Tuning for Random Forest", "10"),
-        ("    4.4 Empirical Target Leakage Ablation Study", "11"),
-        ("Chapter 5: Model Explainability Using SHAP", "12"),
-        ("    5.1 Why Explainability is Essential in Healthcare", "12"),
-        ("    5.2 Game-Theoretic Shapley Values & TreeSHAP", "12"),
-        ("    5.3 Global Feature Importance Analysis", "13"),
-        ("    5.4 Patient-Level Risk vs Protective Decomposition", "14"),
-        ("Chapter 6: Web Application & Clinical PDF Engine", "15"),
-        ("    6.1 Interactive Streamlit Frontend Architecture", "15"),
-        ("    6.2 Real-Time SVG Risk Speedometer Gauge", "16"),
-        ("    6.3 Preset Clinical Evaluation Profiles", "16"),
-        ("    6.4 Automated Clinical Summary PDF Report Generation", "17"),
-        ("Chapter 7: Experimental Results & Performance Evaluation", "18"),
-        ("    7.1 10-Model Cross-Validation Benchmark Comparison", "18"),
-        ("    7.2 Priority of Recall / Sensitivity in Medical Screening", "19"),
-        ("    7.3 Held-Out Test Evaluation & Confusion Matrix", "20"),
-        ("    7.4 Error Analysis of False Negatives", "21"),
-        ("Chapter 8: Project Execution & Verification", "22"),
-        ("    8.1 Software Requirements & Dependencies", "22"),
-        ("    8.2 Step-by-Step Execution Guide", "22"),
-        ("    8.3 Automated Unit Testing with Pytest", "23"),
-        ("Chapter 9: Conclusion & Learnings", "24"),
-        ("    9.1 Summary of Deliverables", "24"),
-        ("    9.2 Practical Engineering Learnings", "24"),
+        ("Certificate of Evaluation", "2"),
+        ("Declaration of Originality", "3"),
+        ("Acknowledgement", "4"),
+        ("Abstract", "5"),
+        ("Chapter 1: Introduction & Project Scope", "7"),
+        ("    1.1 Motivation and Clinical Context", "7"),
+        ("    1.2 Problem Definition", "7"),
+        ("    1.3 Project Objectives", "8"),
+        ("Chapter 2: Dataset Description & Analysis", "9"),
+        ("    2.1 Dataset Overview", "9"),
+        ("    2.2 The Cambridge AQ-10 Behavioral Questions", "9"),
+        ("    2.3 Demographic & Clinical Features", "10"),
+        ("    2.4 Class Distribution & Imbalance", "10"),
+        ("Chapter 3: Data Preprocessing & Leakage Elimination", "11"),
+        ("    3.1 Data Cleaning & Anomaly Correction", "11"),
+        ("    3.2 Missing Value Handling", "11"),
+        ("    3.3 Categorical & Numerical Transformations", "11"),
+        ("    3.4 Target Data Leakage: The 'result' Column Problem", "12"),
+        ("Chapter 4: Machine Learning Models & Training Pipeline", "13"),
+        ("    4.1 Model Selection & Algorithmic Paradigms", "13"),
+        ("    4.2 5-Fold Stratified Cross-Validation", "13"),
+        ("    4.3 Hyperparameter Tuning for Random Forest", "14"),
+        ("    4.4 Empirical Target Leakage Ablation Study", "14"),
+        ("Chapter 5: Model Explainability Using SHAP", "16"),
+        ("    5.1 Why Explainability is Essential in Healthcare", "16"),
+        ("    5.2 Game-Theoretic Shapley Values & TreeSHAP", "16"),
+        ("    5.3 Global Feature Importance Analysis", "17"),
+        ("    5.4 Patient-Level Risk vs Protective Decomposition", "17"),
+        ("Chapter 6: Web Application & Clinical PDF Engine", "18"),
+        ("    6.1 Interactive Streamlit Frontend Architecture", "18"),
+        ("    6.2 Real-Time SVG Risk Speedometer Gauge", "18"),
+        ("    6.3 Preset Clinical Evaluation Profiles", "19"),
+        ("    6.4 Automated Clinical Summary PDF Report Generation", "19"),
+        ("Chapter 7: Experimental Results & Performance Evaluation", "20"),
+        ("    7.1 10-Model Cross-Validation Benchmark Comparison", "20"),
+        ("    7.2 Priority of Recall / Sensitivity in Medical Screening", "21"),
+        ("    7.3 Held-Out Test Evaluation & Confusion Matrix", "21"),
+        ("    7.4 Error Analysis of False Negatives", "22"),
+        ("Chapter 8: Project Execution & Verification", "23"),
+        ("    8.1 Software Requirements & Dependencies", "23"),
+        ("    8.2 Step-by-Step Execution Guide", "23"),
+        ("    8.3 Automated Unit Testing with Pytest", "24"),
+        ("Chapter 9: Conclusion & Learnings", "25"),
+        ("    9.1 Summary of Deliverables", "25"),
+        ("    9.2 Practical Engineering Learnings", "25"),
         ("    9.3 Limitations & Future Scope", "25"),
         ("References", "26")
     ]
@@ -800,14 +863,22 @@ Actual ASD (1)                 FN = 6                    TP = 26
         r_text.font.name = "Times New Roman"
         r_text.font.size = Pt(11)
 
-    doc.save(DOC_PATH)
-    print(f"Report successfully generated at: {DOC_PATH}")
-    print(f"File size: {os.path.getsize(DOC_PATH)} bytes")
-
-    # Copy to scratch directory
+    saved_paths = []
+    try:
+        doc.save(DOC_PATH)
+        saved_paths.append(DOC_PATH)
+        print(f"Report successfully generated at: {DOC_PATH}")
+    except PermissionError:
+        alt_path = r"D:\autism_prediction_project\Autism_Spectrum_Disorder_Prediction_Project_Report_Numbered.docx"
+        doc.save(alt_path)
+        saved_paths.append(alt_path)
+        print(f"Primary file was open in Word. Saved to: {alt_path}")
+    
+    # Always save to scratch path as well
     os.makedirs(os.path.dirname(SCRATCH_PATH), exist_ok=True)
-    shutil.copyfile(DOC_PATH, SCRATCH_PATH)
-    print(f"Report copied to scratch directory at: {SCRATCH_PATH}")
+    doc.save(SCRATCH_PATH)
+    saved_paths.append(SCRATCH_PATH)
+    print(f"Report saved to scratch directory at: {SCRATCH_PATH}")
 
 if __name__ == "__main__":
     create_report()
