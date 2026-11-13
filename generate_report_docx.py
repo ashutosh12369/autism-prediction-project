@@ -3,7 +3,7 @@ generate_report_docx.py
 Generates a complete, descriptive, humanized, plagiarism-free Machine Learning Mini Project Report in .docx format.
 Tailored for IIIT Bhubaneswar, B.Tech in Computer Engineering, Department of Computer Science & Engineering.
 Course Instructor: Prof. Arun Kumar Dasari.
-Team: Arulal Senapati (B523012), Arunanshu Arya (B523013), Ashutosh Sahu (B523014), Ayesha Avlina (B523015).
+Team: Arpita Nayak (B523011), Arulal Senapati (B523012), Arunanshu Arya (B523013), Ashutosh Sahu (B523014).
 """
 
 import os
@@ -206,10 +206,10 @@ def create_report():
     p_team.alignment = WD_ALIGN_PARAGRAPH.CENTER
     p_team.paragraph_format.space_after = Pt(16)
     r_team = p_team.add_run(
+        "ARPITA NAYAK (Roll No: B523011)\n"
         "ARULAL SENAPATI (Roll No: B523012)\n"
         "ARUNANSHU ARYA (Roll No: B523013)\n"
-        "ASHUTOSH SAHU (Roll No: B523014)\n"
-        "AYESHA AVLINA (Roll No: B523015)"
+        "ASHUTOSH SAHU (Roll No: B523014)"
     )
     r_team.bold = True
     r_team.font.size = Pt(11.5)
@@ -241,7 +241,7 @@ def create_report():
     # 2. CERTIFICATE OF EVALUATION
     # ==============================================================================
     add_h1("CERTIFICATE OF EVALUATION")
-    add_para("This is to certify that the Machine Learning Mini Project entitled \"Autism Spectrum Disorder (ASD) Prediction & Screening System Using Machine Learning and Explainable AI\" submitted by Arulal Senapati (Roll No: B523012), Arunanshu Arya (Roll No: B523013), Ashutosh Sahu (Roll No: B523014), and Ayesha Avlina (Roll No: B523015) in partial fulfillment of the requirements for the Machine Learning Course in Bachelor of Technology in Computer Engineering at International Institute of Information Technology, Bhubaneswar, is a bonafide record of project work carried out by them in the Machine Learning Laboratory.", space_after=18)
+    add_para("This is to certify that the Machine Learning Mini Project entitled \"Autism Spectrum Disorder (ASD) Prediction & Screening System Using Machine Learning and Explainable AI\" submitted by Arpita Nayak (Roll No: B523011), Arulal Senapati (Roll No: B523012), Arunanshu Arya (Roll No: B523013), and Ashutosh Sahu (Roll No: B523014) in partial fulfillment of the requirements for the Machine Learning Course in Bachelor of Technology in Computer Engineering at International Institute of Information Technology, Bhubaneswar, is a bonafide record of project work carried out by them in the Machine Learning Laboratory.", space_after=18)
 
     add_para("The work embodied in this mini project report has been evaluated and found satisfactory for submission as part of the academic curriculum for the 2026–2027 academic session.", space_after=36)
 
@@ -277,10 +277,10 @@ def create_report():
     p_dec_sig.alignment = WD_ALIGN_PARAGRAPH.RIGHT
     p_dec_sig.paragraph_format.line_spacing = 1.3
     r_dec = p_dec_sig.add_run(
+        "Arpita Nayak (Roll No: B523011)\n"
         "Arulal Senapati (Roll No: B523012)\n"
         "Arunanshu Arya (Roll No: B523013)\n"
-        "Ashutosh Sahu (Roll No: B523014)\n"
-        "Ayesha Avlina (Roll No: B523015)\n\n"
+        "Ashutosh Sahu (Roll No: B523014)\n\n"
         "Department of Computer Science and Engineering\n"
         "IIIT Bhubaneswar\n"
         "Date: November 2026"
@@ -303,7 +303,7 @@ def create_report():
 
     p_ack_sig = doc.add_paragraph()
     p_ack_sig.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-    r_ack = p_ack_sig.add_run("Arulal Senapati, Arunanshu Arya, Ashutosh Sahu, Ayesha Avlina\nB.Tech in Computer Engineering\nIIIT Bhubaneswar")
+    r_ack = p_ack_sig.add_run("Arpita Nayak, Arulal Senapati, Arunanshu Arya, Ashutosh Sahu\nB.Tech in Computer Engineering\nIIIT Bhubaneswar")
     r_ack.font.name = "Times New Roman"
     r_ack.font.size = Pt(11)
     r_ack.bold = True
