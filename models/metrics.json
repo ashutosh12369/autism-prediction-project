@@ -1,188 +1,188 @@
 {
-  "test_accuracy": 0.8063,
-  "test_precision": 0.5098,
-  "test_recall": 0.8125,
-  "test_f1": 0.6265,
-  "test_roc_auc": 0.8994,
+  "test_accuracy": 1.0,
+  "test_precision": 1.0,
+  "test_recall": 1.0,
+  "test_f1": 1.0,
+  "test_roc_auc": 1.0,
   "confusion_matrix": [
     [
       103,
-      25
+      0
     ],
     [
-      6,
-      26
+      0,
+      38
     ]
   ],
   "best_hyperparameters": {
-    "classifier__n_estimators": "200",
+    "classifier__n_estimators": "300",
     "classifier__min_samples_split": "2",
-    "classifier__min_samples_leaf": "4",
-    "classifier__max_depth": "8",
+    "classifier__min_samples_leaf": "1",
+    "classifier__max_depth": "None",
     "classifier__bootstrap": "True"
   },
   "benchmark_with_result": [
     {
-      "Model": "Support Vector Classifier (RBF)",
-      "Accuracy": 0.8266,
-      "Precision": 0.5577,
-      "Recall (Sensitivity)": 0.8372,
-      "F1-Score": 0.6654,
-      "ROC-AUC": 0.9189
-    },
-    {
-      "Model": "Extra Trees",
-      "Accuracy": 0.8391,
-      "Precision": 0.5941,
-      "Recall (Sensitivity)": 0.6966,
-      "F1-Score": 0.6352,
-      "ROC-AUC": 0.9169
-    },
-    {
       "Model": "Random Forest",
-      "Accuracy": 0.8375,
-      "Precision": 0.5875,
-      "Recall (Sensitivity)": 0.7588,
-      "F1-Score": 0.6528,
-      "ROC-AUC": 0.914
-    },
-    {
-      "Model": "Logistic Regression",
-      "Accuracy": 0.8219,
-      "Precision": 0.5507,
-      "Recall (Sensitivity)": 0.8218,
-      "F1-Score": 0.6538,
-      "ROC-AUC": 0.9132
-    },
-    {
-      "Model": "Soft-Voting Ensemble (RF + GB + LR)",
-      "Accuracy": 0.8438,
-      "Precision": 0.6041,
-      "Recall (Sensitivity)": 0.7591,
-      "F1-Score": 0.6641,
-      "ROC-AUC": 0.9083
-    },
-    {
-      "Model": "HistGradientBoosting (LightGBM-equiv)",
-      "Accuracy": 0.85,
-      "Precision": 0.646,
-      "Recall (Sensitivity)": 0.5886,
-      "F1-Score": 0.6112,
-      "ROC-AUC": 0.8996
-    },
-    {
-      "Model": "Gradient Boosting",
-      "Accuracy": 0.8391,
-      "Precision": 0.6117,
-      "Recall (Sensitivity)": 0.5886,
-      "F1-Score": 0.594,
-      "ROC-AUC": 0.8845
-    },
-    {
-      "Model": "Multi-Layer Perceptron (Neural Net)",
-      "Accuracy": 0.8328,
-      "Precision": 0.6071,
-      "Recall (Sensitivity)": 0.5105,
-      "F1-Score": 0.5446,
-      "ROC-AUC": 0.8785
+      "Accuracy": 1.0,
+      "Precision": 1.0,
+      "Recall (Sensitivity)": 1.0,
+      "F1-Score": 1.0,
+      "ROC-AUC": 1.0
     },
     {
       "Model": "Decision Tree",
-      "Accuracy": 0.8156,
-      "Precision": 0.5431,
-      "Recall (Sensitivity)": 0.7748,
-      "F1-Score": 0.6324,
-      "ROC-AUC": 0.8211
+      "Accuracy": 1.0,
+      "Precision": 1.0,
+      "Recall (Sensitivity)": 1.0,
+      "F1-Score": 1.0,
+      "ROC-AUC": 1.0
+    },
+    {
+      "Model": "Soft-Voting Ensemble (RF + GB + LR)",
+      "Accuracy": 1.0,
+      "Precision": 1.0,
+      "Recall (Sensitivity)": 1.0,
+      "F1-Score": 1.0,
+      "ROC-AUC": 1.0
+    },
+    {
+      "Model": "Gradient Boosting",
+      "Accuracy": 1.0,
+      "Precision": 1.0,
+      "Recall (Sensitivity)": 1.0,
+      "F1-Score": 1.0,
+      "ROC-AUC": 1.0
+    },
+    {
+      "Model": "HistGradientBoosting (LightGBM-equiv)",
+      "Accuracy": 1.0,
+      "Precision": 1.0,
+      "Recall (Sensitivity)": 1.0,
+      "F1-Score": 1.0,
+      "ROC-AUC": 1.0
+    },
+    {
+      "Model": "Logistic Regression",
+      "Accuracy": 0.9893,
+      "Precision": 0.9683,
+      "Recall (Sensitivity)": 0.9933,
+      "F1-Score": 0.9804,
+      "ROC-AUC": 0.9998
+    },
+    {
+      "Model": "Extra Trees",
+      "Accuracy": 0.9876,
+      "Precision": 0.9804,
+      "Recall (Sensitivity)": 0.9733,
+      "F1-Score": 0.9767,
+      "ROC-AUC": 0.9993
+    },
+    {
+      "Model": "Support Vector Classifier (RBF)",
+      "Accuracy": 0.9822,
+      "Precision": 0.9558,
+      "Recall (Sensitivity)": 0.9802,
+      "F1-Score": 0.9675,
+      "ROC-AUC": 0.9985
+    },
+    {
+      "Model": "Multi-Layer Perceptron (Neural Net)",
+      "Accuracy": 0.9733,
+      "Precision": 0.9556,
+      "Recall (Sensitivity)": 0.9473,
+      "F1-Score": 0.9505,
+      "ROC-AUC": 0.9974
     },
     {
       "Model": "Gaussian Naive Bayes",
-      "Accuracy": 0.5875,
-      "Precision": 0.3264,
-      "Recall (Sensitivity)": 0.9225,
-      "F1-Score": 0.48,
-      "ROC-AUC": 0.8138
+      "Accuracy": 0.8332,
+      "Precision": 0.6539,
+      "Recall (Sensitivity)": 0.8873,
+      "F1-Score": 0.7458,
+      "ROC-AUC": 0.8877
     }
   ],
   "benchmark_without_result": [
     {
-      "Model": "Random Forest",
-      "Accuracy": 0.8391,
-      "Precision": 0.5846,
-      "Recall (Sensitivity)": 0.7748,
-      "F1-Score": 0.661,
-      "ROC-AUC": 0.9182
+      "Model": "Logistic Regression",
+      "Accuracy": 0.984,
+      "Precision": 0.9502,
+      "Recall (Sensitivity)": 0.9933,
+      "F1-Score": 0.971,
+      "ROC-AUC": 0.9996
     },
     {
       "Model": "Support Vector Classifier (RBF)",
-      "Accuracy": 0.8187,
-      "Precision": 0.5497,
-      "Recall (Sensitivity)": 0.8218,
-      "F1-Score": 0.6525,
-      "ROC-AUC": 0.9181
-    },
-    {
-      "Model": "Extra Trees",
-      "Accuracy": 0.8438,
-      "Precision": 0.6047,
-      "Recall (Sensitivity)": 0.6963,
-      "F1-Score": 0.639,
-      "ROC-AUC": 0.9178
+      "Accuracy": 0.9716,
+      "Precision": 0.93,
+      "Recall (Sensitivity)": 0.9669,
+      "F1-Score": 0.948,
+      "ROC-AUC": 0.997
     },
     {
       "Model": "Soft-Voting Ensemble (RF + GB + LR)",
-      "Accuracy": 0.8406,
-      "Precision": 0.5917,
-      "Recall (Sensitivity)": 0.7354,
-      "F1-Score": 0.6476,
-      "ROC-AUC": 0.9148
-    },
-    {
-      "Model": "Logistic Regression",
-      "Accuracy": 0.8172,
-      "Precision": 0.5423,
-      "Recall (Sensitivity)": 0.8142,
-      "F1-Score": 0.6457,
-      "ROC-AUC": 0.9111
-    },
-    {
-      "Model": "HistGradientBoosting (LightGBM-equiv)",
-      "Accuracy": 0.8469,
-      "Precision": 0.6416,
-      "Recall (Sensitivity)": 0.5649,
-      "F1-Score": 0.5941,
-      "ROC-AUC": 0.9096
-    },
-    {
-      "Model": "Gradient Boosting",
-      "Accuracy": 0.8375,
-      "Precision": 0.6121,
-      "Recall (Sensitivity)": 0.5566,
-      "F1-Score": 0.5719,
-      "ROC-AUC": 0.9036
+      "Accuracy": 0.9644,
+      "Precision": 0.9355,
+      "Recall (Sensitivity)": 0.9338,
+      "F1-Score": 0.9337,
+      "ROC-AUC": 0.9957
     },
     {
       "Model": "Multi-Layer Perceptron (Neural Net)",
-      "Accuracy": 0.8406,
-      "Precision": 0.6231,
-      "Recall (Sensitivity)": 0.5258,
-      "F1-Score": 0.5577,
-      "ROC-AUC": 0.8766
+      "Accuracy": 0.9662,
+      "Precision": 0.9475,
+      "Recall (Sensitivity)": 0.9275,
+      "F1-Score": 0.9367,
+      "ROC-AUC": 0.9949
+    },
+    {
+      "Model": "Random Forest",
+      "Accuracy": 0.9591,
+      "Precision": 0.911,
+      "Recall (Sensitivity)": 0.9406,
+      "F1-Score": 0.9251,
+      "ROC-AUC": 0.9937
+    },
+    {
+      "Model": "Extra Trees",
+      "Accuracy": 0.9556,
+      "Precision": 0.9319,
+      "Recall (Sensitivity)": 0.9004,
+      "F1-Score": 0.9156,
+      "ROC-AUC": 0.9918
+    },
+    {
+      "Model": "HistGradientBoosting (LightGBM-equiv)",
+      "Accuracy": 0.9538,
+      "Precision": 0.9432,
+      "Recall (Sensitivity)": 0.8811,
+      "F1-Score": 0.9103,
+      "ROC-AUC": 0.991
+    },
+    {
+      "Model": "Gradient Boosting",
+      "Accuracy": 0.9449,
+      "Precision": 0.9223,
+      "Recall (Sensitivity)": 0.8675,
+      "F1-Score": 0.8937,
+      "ROC-AUC": 0.9882
     },
     {
       "Model": "Decision Tree",
-      "Accuracy": 0.8141,
-      "Precision": 0.5404,
-      "Recall (Sensitivity)": 0.768,
-      "F1-Score": 0.6279,
-      "ROC-AUC": 0.8203
+      "Accuracy": 0.8863,
+      "Precision": 0.7834,
+      "Recall (Sensitivity)": 0.8015,
+      "F1-Score": 0.7917,
+      "ROC-AUC": 0.8715
     },
     {
       "Model": "Gaussian Naive Bayes",
-      "Accuracy": 0.5734,
-      "Precision": 0.3177,
-      "Recall (Sensitivity)": 0.9225,
-      "F1-Score": 0.4708,
-      "ROC-AUC": 0.8102
+      "Accuracy": 0.7799,
+      "Precision": 0.5821,
+      "Recall (Sensitivity)": 0.8609,
+      "F1-Score": 0.6832,
+      "ROC-AUC": 0.866
     }
   ],
   "feature_names": [

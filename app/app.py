@@ -687,7 +687,7 @@ with tab2:
     st.markdown("---")
     st.markdown("#### 2. Target Leakage Ablation Study (Academic Rigor)")
     st.info("""
-    **Methodological Validation:** In Kaggle/UCI datasets, the `result` feature is the direct arithmetic sum of `A1` to `A10`.
+    **Methodological Validation:** In published UCI clinical screening datasets, the `result` feature is the direct arithmetic sum of `A1` to `A10`.
     Evaluating models *strictly without* `result` tests whether the model learns real multi-variate associations rather than memorizing addition.
     """)
 

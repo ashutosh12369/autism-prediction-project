@@ -71,8 +71,12 @@ def clean_dataframe(df: pd.DataFrame, drop_target_leakage: bool = False) -> pd.D
     """
     df = df.copy()
 
+    # Rename jundice typo from UCI ARFF if present
+    if "jundice" in df.columns and "jaundice" not in df.columns:
+        df["jaundice"] = df["jundice"]
+
     # Drop non-informative columns
-    cols_to_drop = [col for col in ["ID", "age_desc"] if col in df.columns]
+    cols_to_drop = [col for col in ["ID", "age_desc", "jundice"] if col in df.columns]
     if cols_to_drop:
         df = df.drop(columns=cols_to_drop)
 
@@ -120,9 +124,12 @@ def clean_dataframe(df: pd.DataFrame, drop_target_leakage: bool = False) -> pd.D
         if drop_target_leakage:
             df = df.drop(columns=["result"])
 
-    # Target column cleaning
+    # Target column cleaning (handles YES/NO strings from UCI ARFF or 0/1 integers)
     if "Class/ASD" in df.columns:
-        df["Class/ASD"] = pd.to_numeric(df["Class/ASD"], errors="coerce").fillna(0).astype(int)
+        if df["Class/ASD"].dtype == object or df["Class/ASD"].astype(str).str.contains("YES|NO|yes|no").any():
+            df["Class/ASD"] = df["Class/ASD"].astype(str).str.strip().str.upper().map({"YES": 1, "NO": 0, "1": 1, "0": 0}).fillna(0).astype(int)
+        else:
+            df["Class/ASD"] = pd.to_numeric(df["Class/ASD"], errors="coerce").fillna(0).astype(int)
 
     return df
 

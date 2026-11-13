@@ -5,6 +5,7 @@ conducts an ablation study for target leakage, and serializes the champion model
 """
 
 import os
+import sys
 import json
 import joblib
 import numpy as np
@@ -28,11 +29,13 @@ from sklearn.ensemble import (
 from sklearn.neural_network import MLPClassifier
 from sklearn.pipeline import Pipeline
 
-from src.data_pipeline import clean_dataframe, build_preprocessor, get_feature_names
-
-
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
-RAW_DATA_PATH = os.path.join(PROJECT_ROOT, "data", "raw", "train.csv")
+if PROJECT_ROOT not in sys.path:
+    sys.path.insert(0, PROJECT_ROOT)
+
+from src.data_pipeline import clean_dataframe, build_preprocessor, get_feature_names
+UCI_DATA_PATH = os.path.join(PROJECT_ROOT, "data", "raw", "uci_clinical_autism_data.csv")
+RAW_DATA_PATH = UCI_DATA_PATH if os.path.exists(UCI_DATA_PATH) else os.path.join(PROJECT_ROOT, "data", "raw", "train.csv")
 MODELS_DIR = os.path.join(PROJECT_ROOT, "models")
 
 
