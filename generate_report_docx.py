@@ -23,6 +23,18 @@ def set_cell_background(cell, fill_hex):
     tcPr = cell._tc.get_or_add_tcPr()
     tcPr.append(parse_xml(f'<w:shd {nsdecls("w")} w:fill="{fill_hex}"/>'))
 
+def set_table_borders(table):
+    tblPr = table._tbl.tblPr
+    borders = parse_xml(f'''<w:tblBorders {nsdecls("w")}>
+        <w:top w:val="single" w:sz="12" w:space="0" w:color="000000"/>
+        <w:bottom w:val="single" w:sz="12" w:space="0" w:color="000000"/>
+        <w:left w:val="none"/>
+        <w:right w:val="none"/>
+        <w:insideH w:val="single" w:sz="4" w:space="0" w:color="CCCCCC"/>
+        <w:insideV w:val="none"/>
+    </w:tblBorders>''')
+    tblPr.append(borders)
+
 def set_cell_margins(cell, top=100, bottom=100, left=150, right=150):
     tcPr = cell._tc.get_or_add_tcPr()
     tcMar = parse_xml(f'<w:tcMar {nsdecls("w")}><w:top w:w="{top}" w:type="dxa"/><w:bottom w:w="{bottom}" w:type="dxa"/><w:left w:w="{left}" w:type="dxa"/><w:right w:w="{right}" w:type="dxa"/></w:tcMar>')
@@ -45,7 +57,7 @@ def create_report():
             <w:pPr>
                 <w:pStyle w:val="Footer"/>
                 <w:pBdr>
-                    <w:top w:val="single" w:sz="6" w:space="6" w:color="CBD5E1"/>
+                    <w:top w:val="single" w:sz="8" w:space="6" w:color="000000"/>
                 </w:pBdr>
                 <w:tabs>
                     <w:tab w:val="center" w:pos="4500"/>
@@ -57,7 +69,7 @@ def create_report():
                 <w:rPr>
                     <w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/>
                     <w:i/>
-                    <w:color w:val="64748B"/>
+                    <w:color w:val="000000"/>
                     <w:sz w:val="18"/>
                 </w:rPr>
                 <w:t>ML Mini Project | Computer Engineering, IIIT Bhubaneswar</w:t>
@@ -69,7 +81,7 @@ def create_report():
             <w:r>
                 <w:rPr>
                     <w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/>
-                    <w:color w:val="64748B"/>
+                    <w:color w:val="000000"/>
                     <w:sz w:val="18"/>
                 </w:rPr>
                 <w:t xml:space="preserve">Page </w:t>
@@ -79,7 +91,7 @@ def create_report():
                     <w:rPr>
                         <w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/>
                         <w:b/>
-                        <w:color w:val="0F172A"/>
+                        <w:color w:val="000000"/>
                         <w:sz w:val="18"/>
                     </w:rPr>
                     <w:t>1</w:t>
@@ -88,7 +100,7 @@ def create_report():
             <w:r>
                 <w:rPr>
                     <w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/>
-                    <w:color w:val="64748B"/>
+                    <w:color w:val="000000"/>
                     <w:sz w:val="18"/>
                 </w:rPr>
                 <w:t xml:space="preserve"> of </w:t>
@@ -98,7 +110,7 @@ def create_report():
                     <w:rPr>
                         <w:rFonts w:ascii="Times New Roman" w:hAnsi="Times New Roman"/>
                         <w:b/>
-                        <w:color w:val="0F172A"/>
+                        <w:color w:val="000000"/>
                         <w:sz w:val="18"/>
                     </w:rPr>
                     <w:t>26</w:t>
@@ -116,7 +128,7 @@ def create_report():
     font = style_normal.font
     font.name = 'Times New Roman'
     font.size = Pt(12)
-    font.color.rgb = RGBColor(30, 30, 30)
+    font.color.rgb = RGBColor(0, 0, 0)
 
     # Helper function for adding styled paragraphs
     def add_para(text, align=WD_ALIGN_PARAGRAPH.JUSTIFY, space_after=6, bold=False, italic=False, line_spacing=1.15):
@@ -140,7 +152,7 @@ def create_report():
         run.bold = True
         run.font.name = 'Times New Roman'
         run.font.size = Pt(15)
-        run.font.color.rgb = RGBColor(15, 23, 42)
+        run.font.color.rgb = RGBColor(0, 0, 0)
         return p
 
     def add_h2(text):
@@ -152,7 +164,7 @@ def create_report():
         run.bold = True
         run.font.name = 'Times New Roman'
         run.font.size = Pt(13)
-        run.font.color.rgb = RGBColor(30, 41, 59)
+        run.font.color.rgb = RGBColor(0, 0, 0)
         return p
 
     def add_h3(text):
@@ -165,7 +177,7 @@ def create_report():
         run.italic = True
         run.font.name = 'Times New Roman'
         run.font.size = Pt(11.5)
-        run.font.color.rgb = RGBColor(51, 65, 85)
+        run.font.color.rgb = RGBColor(0, 0, 0)
         return p
 
     # ==============================================================================
@@ -526,29 +538,30 @@ def create_report():
     t_feat = doc.add_table(rows=len(feat_rows) + 1, cols=4)
     t_feat.alignment = WD_TABLE_ALIGNMENT.CENTER
     t_feat.autofit = False
+    set_table_borders(t_feat)
 
     for c_idx, h in enumerate(feat_headers):
         cell = t_feat.rows[0].cells[c_idx]
         cell.text = h
-        set_cell_background(cell, "0F172A")
+        set_cell_background(cell, "F3F4F6") # Very faint gray (B&W friendly)
         set_cell_margins(cell, top=100, bottom=100, left=80, right=80)
         p = cell.paragraphs[0]
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
         run = p.runs[0]
         run.bold = True
-        run.font.color.rgb = RGBColor(255, 255, 255)
+        run.font.color.rgb = RGBColor(0, 0, 0) # PURE BLACK TEXT!
         run.font.size = Pt(9.5)
 
     for r_idx, row_data in enumerate(feat_rows):
         row = t_feat.rows[r_idx + 1]
-        bg = "F8FAFC" if r_idx % 2 == 0 else "FFFFFF"
         for c_idx, val in enumerate(row_data):
             cell = row.cells[c_idx]
             cell.text = val
-            set_cell_background(cell, bg)
+            set_cell_background(cell, "FFFFFF") # PURE WHITE BACKGROUND!
             set_cell_margins(cell, top=70, bottom=70, left=80, right=80)
             p = cell.paragraphs[0]
             run = p.runs[0]
+            run.font.color.rgb = RGBColor(0, 0, 0) # PURE BLACK TEXT!
             run.font.size = Pt(9)
             if c_idx == 0:
                 run.bold = True
@@ -602,30 +615,31 @@ def create_report():
     t_abl = doc.add_table(rows=len(abl_rows) + 1, cols=5)
     t_abl.alignment = WD_TABLE_ALIGNMENT.CENTER
     t_abl.autofit = False
+    set_table_borders(t_abl)
 
     for c_idx, h in enumerate(abl_headers):
         cell = t_abl.rows[0].cells[c_idx]
         cell.text = h
-        set_cell_background(cell, "1E3A8A")
+        set_cell_background(cell, "F3F4F6") # Very faint gray (B&W friendly)
         set_cell_margins(cell, top=100, bottom=100, left=80, right=80)
         p = cell.paragraphs[0]
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
         run = p.runs[0]
         run.bold = True
-        run.font.color.rgb = RGBColor(255, 255, 255)
+        run.font.color.rgb = RGBColor(0, 0, 0) # PURE BLACK TEXT!
         run.font.size = Pt(9.5)
 
     for r_idx, row_data in enumerate(abl_rows):
         row = t_abl.rows[r_idx + 1]
-        bg = "F8FAFC" if r_idx % 2 == 0 else "FFFFFF"
         for c_idx, val in enumerate(row_data):
             cell = row.cells[c_idx]
             cell.text = val
-            set_cell_background(cell, bg)
+            set_cell_background(cell, "FFFFFF") # PURE WHITE BACKGROUND!
             set_cell_margins(cell, top=70, bottom=70, left=80, right=80)
             p = cell.paragraphs[0]
             p.alignment = WD_ALIGN_PARAGRAPH.CENTER
             run = p.runs[0]
+            run.font.color.rgb = RGBColor(0, 0, 0) # PURE BLACK TEXT!
             run.font.size = Pt(9)
             if c_idx == 0:
                 run.bold = True
@@ -722,32 +736,33 @@ def create_report():
     t_res = doc.add_table(rows=len(res_rows) + 1, cols=6)
     t_res.alignment = WD_TABLE_ALIGNMENT.CENTER
     t_res.autofit = False
+    set_table_borders(t_res)
 
     for c_idx, h in enumerate(res_headers):
         cell = t_res.rows[0].cells[c_idx]
         cell.text = h
-        set_cell_background(cell, "0F172A")
+        set_cell_background(cell, "F3F4F6") # Very faint gray (B&W friendly)
         set_cell_margins(cell, top=100, bottom=100, left=60, right=60)
         p = cell.paragraphs[0]
         p.alignment = WD_ALIGN_PARAGRAPH.CENTER
         run = p.runs[0]
         run.bold = True
-        run.font.color.rgb = RGBColor(255, 255, 255)
+        run.font.color.rgb = RGBColor(0, 0, 0) # PURE BLACK TEXT!
         run.font.size = Pt(9)
 
     for r_idx, row_data in enumerate(res_rows):
         row = t_res.rows[r_idx + 1]
-        bg = "ECFDF5" if r_idx == 0 else ("F8FAFC" if r_idx % 2 == 0 else "FFFFFF")
         for c_idx, val in enumerate(row_data):
             cell = row.cells[c_idx]
             cell.text = val
-            set_cell_background(cell, bg)
+            set_cell_background(cell, "FFFFFF") # PURE WHITE BACKGROUND!
             set_cell_margins(cell, top=70, bottom=70, left=60, right=60)
             p = cell.paragraphs[0]
             p.alignment = WD_ALIGN_PARAGRAPH.CENTER
             run = p.runs[0]
+            run.font.color.rgb = RGBColor(0, 0, 0) # PURE BLACK TEXT!
             run.font.size = Pt(9)
-            if r_idx == 0 or c_idx == 0:
+            if c_idx == 0 or "Champion" in row_data[0]:
                 run.bold = True
 
     add_para("\nCaption: Table 7.1: 5-Fold Stratified Cross-Validation Benchmark Across Machine Learning Algorithms.", align=WD_ALIGN_PARAGRAPH.CENTER, italic=True, space_after=12)
