@@ -1,0 +1,12 @@
+food_waste_tw_report/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.env
+.venv/
+env/
+venv/
+*.pdf
+!models/
+models/*.pdf

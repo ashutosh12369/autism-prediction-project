@@ -1,0 +1,236 @@
+{
+  "test_accuracy": 0.8063,
+  "test_precision": 0.5098,
+  "test_recall": 0.8125,
+  "test_f1": 0.6265,
+  "test_roc_auc": 0.8994,
+  "confusion_matrix": [
+    [
+      103,
+      25
+    ],
+    [
+      6,
+      26
+    ]
+  ],
+  "best_hyperparameters": {
+    "classifier__n_estimators": "200",
+    "classifier__min_samples_split": "2",
+    "classifier__min_samples_leaf": "4",
+    "classifier__max_depth": "8",
+    "classifier__bootstrap": "True"
+  },
+  "benchmark_with_result": [
+    {
+      "Model": "Support Vector Classifier (RBF)",
+      "Accuracy": 0.8266,
+      "Precision": 0.5577,
+      "Recall (Sensitivity)": 0.8372,
+      "F1-Score": 0.6654,
+      "ROC-AUC": 0.9189
+    },
+    {
+      "Model": "Extra Trees",
+      "Accuracy": 0.8391,
+      "Precision": 0.5941,
+      "Recall (Sensitivity)": 0.6966,
+      "F1-Score": 0.6352,
+      "ROC-AUC": 0.9169
+    },
+    {
+      "Model": "Random Forest",
+      "Accuracy": 0.8375,
+      "Precision": 0.5875,
+      "Recall (Sensitivity)": 0.7588,
+      "F1-Score": 0.6528,
+      "ROC-AUC": 0.914
+    },
+    {
+      "Model": "Logistic Regression",
+      "Accuracy": 0.8219,
+      "Precision": 0.5507,
+      "Recall (Sensitivity)": 0.8218,
+      "F1-Score": 0.6538,
+      "ROC-AUC": 0.9132
+    },
+    {
+      "Model": "Soft-Voting Ensemble (RF + GB + LR)",
+      "Accuracy": 0.8438,
+      "Precision": 0.6041,
+      "Recall (Sensitivity)": 0.7591,
+      "F1-Score": 0.6641,
+      "ROC-AUC": 0.9083
+    },
+    {
+      "Model": "HistGradientBoosting (LightGBM-equiv)",
+      "Accuracy": 0.85,
+      "Precision": 0.646,
+      "Recall (Sensitivity)": 0.5886,
+      "F1-Score": 0.6112,
+      "ROC-AUC": 0.8996
+    },
+    {
+      "Model": "Gradient Boosting",
+      "Accuracy": 0.8391,
+      "Precision": 0.6117,
+      "Recall (Sensitivity)": 0.5886,
+      "F1-Score": 0.594,
+      "ROC-AUC": 0.8845
+    },
+    {
+      "Model": "Multi-Layer Perceptron (Neural Net)",
+      "Accuracy": 0.8328,
+      "Precision": 0.6071,
+      "Recall (Sensitivity)": 0.5105,
+      "F1-Score": 0.5446,
+      "ROC-AUC": 0.8785
+    },
+    {
+      "Model": "Decision Tree",
+      "Accuracy": 0.8156,
+      "Precision": 0.5431,
+      "Recall (Sensitivity)": 0.7748,
+      "F1-Score": 0.6324,
+      "ROC-AUC": 0.8211
+    },
+    {
+      "Model": "Gaussian Naive Bayes",
+      "Accuracy": 0.5875,
+      "Precision": 0.3264,
+      "Recall (Sensitivity)": 0.9225,
+      "F1-Score": 0.48,
+      "ROC-AUC": 0.8138
+    }
+  ],
+  "benchmark_without_result": [
+    {
+      "Model": "Random Forest",
+      "Accuracy": 0.8391,
+      "Precision": 0.5846,
+      "Recall (Sensitivity)": 0.7748,
+      "F1-Score": 0.661,
+      "ROC-AUC": 0.9182
+    },
+    {
+      "Model": "Support Vector Classifier (RBF)",
+      "Accuracy": 0.8187,
+      "Precision": 0.5497,
+      "Recall (Sensitivity)": 0.8218,
+      "F1-Score": 0.6525,
+      "ROC-AUC": 0.9181
+    },
+    {
+      "Model": "Extra Trees",
+      "Accuracy": 0.8438,
+      "Precision": 0.6047,
+      "Recall (Sensitivity)": 0.6963,
+      "F1-Score": 0.639,
+      "ROC-AUC": 0.9178
+    },
+    {
+      "Model": "Soft-Voting Ensemble (RF + GB + LR)",
+      "Accuracy": 0.8406,
+      "Precision": 0.5917,
+      "Recall (Sensitivity)": 0.7354,
+      "F1-Score": 0.6476,
+      "ROC-AUC": 0.9148
+    },
+    {
+      "Model": "Logistic Regression",
+      "Accuracy": 0.8172,
+      "Precision": 0.5423,
+      "Recall (Sensitivity)": 0.8142,
+      "F1-Score": 0.6457,
+      "ROC-AUC": 0.9111
+    },
+    {
+      "Model": "HistGradientBoosting (LightGBM-equiv)",
+      "Accuracy": 0.8469,
+      "Precision": 0.6416,
+      "Recall (Sensitivity)": 0.5649,
+      "F1-Score": 0.5941,
+      "ROC-AUC": 0.9096
+    },
+    {
+      "Model": "Gradient Boosting",
+      "Accuracy": 0.8375,
+      "Precision": 0.6121,
+      "Recall (Sensitivity)": 0.5566,
+      "F1-Score": 0.5719,
+      "ROC-AUC": 0.9036
+    },
+    {
+      "Model": "Multi-Layer Perceptron (Neural Net)",
+      "Accuracy": 0.8406,
+      "Precision": 0.6231,
+      "Recall (Sensitivity)": 0.5258,
+      "F1-Score": 0.5577,
+      "ROC-AUC": 0.8766
+    },
+    {
+      "Model": "Decision Tree",
+      "Accuracy": 0.8141,
+      "Precision": 0.5404,
+      "Recall (Sensitivity)": 0.768,
+      "F1-Score": 0.6279,
+      "ROC-AUC": 0.8203
+    },
+    {
+      "Model": "Gaussian Naive Bayes",
+      "Accuracy": 0.5734,
+      "Precision": 0.3177,
+      "Recall (Sensitivity)": 0.9225,
+      "F1-Score": 0.4708,
+      "ROC-AUC": 0.8102
+    }
+  ],
+  "feature_names": [
+    "age",
+    "result",
+    "ethnicity_Asian",
+    "ethnicity_Black",
+    "ethnicity_Hispanic",
+    "ethnicity_Latino",
+    "ethnicity_Others",
+    "ethnicity_Pasifika",
+    "ethnicity_South Asian",
+    "ethnicity_Turkish",
+    "ethnicity_White-European",
+    "contry_of_res_Afghanistan",
+    "contry_of_res_Australia",
+    "contry_of_res_Austria",
+    "contry_of_res_Brazil",
+    "contry_of_res_Canada",
+    "contry_of_res_India",
+    "contry_of_res_Jordan",
+    "contry_of_res_Netherlands",
+    "contry_of_res_New Zealand",
+    "contry_of_res_Other",
+    "contry_of_res_Russia",
+    "contry_of_res_South Africa",
+    "contry_of_res_Sri Lanka",
+    "contry_of_res_United Arab Emirates",
+    "contry_of_res_United Kingdom",
+    "contry_of_res_United States",
+    "relation_Healthcare Professional",
+    "relation_Others",
+    "relation_Parent",
+    "relation_Relative",
+    "relation_Self",
+    "A1_Score",
+    "A2_Score",
+    "A3_Score",
+    "A4_Score",
+    "A5_Score",
+    "A6_Score",
+    "A7_Score",
+    "A8_Score",
+    "A9_Score",
+    "A10_Score",
+    "gender",
+    "jaundice",
+    "austim",
+    "used_app_before"
+  ]
+}
